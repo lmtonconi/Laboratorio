@@ -1,0 +1,122 @@
+/* css Document*/
+div.cabecera{
+    background:#6dac00;
+    border: solid 2px color#00004b;    
+    position: absolute;
+    top: 5px;
+    left: 0.5%;    
+    width: 99%;
+    height: 114px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.logo{
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    left: 0%;
+    width: 15.9%;
+    height: 100%;
+    color: #ffffff;
+    background-color: #00004b;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.portada{
+    position: absolute;
+    left: 16%;
+    width: 84%;
+    height: 100%;   
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+div.izq{
+    position: absolute;
+    top: 120px; 
+    left: 0.5%;
+    width: 19.3%;
+    height: 459px;
+    color: white;
+    background: #00004b;
+    background-size: cover;
+    border: solid 1px color #00004b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /*overflow:scroll;*/    
+}
+div.cuerpo{
+    position: absolute;
+    top: 120px;
+    left: 19.9%;
+    width: 60%;
+    height: 459px;
+    background: #f5ff9d;
+    border: solid 0px #00004b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.der{
+    position: absolute;
+    top: 120px;
+    left: 80%;
+    width: 19.3%;
+    height: 459px;
+    color: #ffffff;
+    size: 14px;
+    background: #00004b;    
+    border: solid 1px #00004b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.pie{
+    position: absolute;
+    top: 580px;    
+    left: 0.5%;
+    width: 98.8%;
+    height: 10%;
+    font-size: 14px;
+    background: #000000;
+    border: solid 1px #000000;
+    display: flex;
+    align-items:center;
+    justify-content:left;
+}
+a:link{
+    height: 0px;    
+    width: inherit;
+    color: #ffff33;
+}
+a:visited{
+    color: #ffffff;    
+}
+a:hover{
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    color: #00ff00;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+}
+.pie p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: rgb(155, 155, 155);
+    margin: auto;
+}
+iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+

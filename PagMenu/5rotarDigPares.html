@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotar Digitos Pares</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 120px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="rotarPares">
+            <h3>5. Diseñar un algoritmo para rotar a la derecha los dígitos pares de un número cualquiera que tenga una cantidad mayor o igual a 6 dígitos.</h3>
+            <form onsubmit="rotarPares(event)">
+                <label for="numeroPares">Número (X):</label>
+                <input type="text" id="numeroPares" required>
+                <button type="submit">Rotar</button>
+            </form>
+            <p id="resPares" class="res"></p>
+        </section>
+    </div>
+
+    <script type="text/javascript">
+        function rotarPares(event) {
+            event.preventDefault();
+            const numero = document.getElementById('numeroPares').value;
+
+            if (!/^\d+$/.test(numero)) {
+                document.getElementById('resPares').innerText = "Por favor, ingresa un número válido.";
+                return;
+            }
+            //El numero debe de tener al menos 6 digitos.
+            if (numero.length < 6) {
+                document.getElementById('resPares').innerText = "El número debe tener al menos 6 dígitos.";
+                return;
+            }
+
+            let pares = '';
+            let resto = '';
+            let primeroPares = null;
+
+            // Recorrer el número para separar los pares y los impares
+            for (let i = 0; i < numero.length; i++) {
+                let digito = parseInt(numero[i]);
+                if (digito % 2 === 0) {
+                // Si es par, lo agregamos a los pares
+                    if (primeroPares === null) {
+                        primeroPares = digito; // Guardamos el primer dígito par
+                    }
+                    else {
+                        pares += digito; // Agregamos los demás dígitos pares
+                    }
+                } 
+                else {
+                // Si es impar, lo agregamos a resto
+                resto += digito;
+                }
+            }
+
+            // Si encontramos pares, los rotamos
+            if (pares.length > 0) {
+                pares += primeroPares; // Rotamos el primer dígito par al final
+            }
+
+            // Unimos los pares rotados con los impares
+            const resultado = pares + resto;
+            document.getElementById('resPares').innerText = `Resultado: ${resultado}`;
+        }
+    </script>
+</body>
+</html>

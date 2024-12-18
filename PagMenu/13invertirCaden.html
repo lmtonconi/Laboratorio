@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invertir Cadena</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 250px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="invertirCadena">
+            <h3>13. Invertir una cadena de caracteres</h3>
+            <form onsubmit="invertirCadena(event)">
+                <label for="cadenaInvertir">Texto: </label>
+                <input type="text" id="cadenaInvertir" min="1" placeholder="Ejm: Hola">
+                <button type="submit">Invertir</button>
+            </form>
+            <p id="resInvertir" class="res"></p>
+        </section>
+    </div>
+
+    <script>
+        function invertirCadena(event) {
+            event.preventDefault();             
+            const texto = document.getElementById('cadenaInvertir').value;
+
+            let textoInvertido = '';
+            for (let i = texto.length - 1; i >= 0; i--) {
+                textoInvertido += texto[i];
+            }
+           
+            document.getElementById('resInvertir').innerText = `Texto invertido: ${textoInvertido}`;
+        }
+    </script>
+
+</body>
+</html>

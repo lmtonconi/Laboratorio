@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitos Repetidos</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 120px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="digitosRepetidos">
+            <h3>6. Dado un número x>100 mostrar los dígitos repetidos.</h3>
+            <form onsubmit="mostrarRepetidos(event)">
+                <label for="numeroRepetido">Número (X):</label>
+                <input type="number" id="numeroRepetido" placeholder="Ej: 123">
+                <button type="submit">Generar</button>
+            </form>
+            <p id="resRepetidos" class="res"></p>
+        </section>
+    </div>
+
+    <script type="text/javascript">
+        function mostrarRepetidos(event) {
+            event.preventDefault();
+            const numero = document.getElementById('numeroRepetido').value;
+
+            if (numero < 101) {
+                document.getElementById('resRepetidos').innerText = "El número debe ser mayor a 100";
+                return;
+            }
+
+            let repetidos = '';
+            let encontrado = false;
+      
+            for (let i = 0; i < numero.length; i++) {
+                let digit = numero[i];
+                for (let j = i + 1; j < numero.length; j++) {
+                    if (digit === numero[j]) {
+                        if (!repetidos.includes(digit)) {
+                            repetidos += digit + ', ';
+                            encontrado = true;
+                        }
+                        break;
+                    }
+                }
+            }
+      
+            document.getElementById('resRepetidos').innerText = encontrado? `Dígitos repetidos: ${repetidos.trim()}`
+            : 'No hay dígitos repetidos.';
+        }
+    </script>
+</body>
+</html>

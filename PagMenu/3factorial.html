@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+    <title>factorial y suma</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 120px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="serieFactorial">
+            <h3>3. Generar los factoriales hasta un N, y calcular la suma. S = 1! + 2! + 3!+ ...... +N!</h3>
+            <form onsubmit="calcularFactorial(event)">
+                <label for="factorialN">Número (N):</label>
+                <input type="number" id="factorialN" min="1" placeholder="Ejm: 5">
+                <button type="submit">Generar</button>
+            </form>
+            <p id="resFactorial" class="res"></p>
+        </section>
+    </div>
+
+    <script type="text/javascript">
+        function factorial(n){
+            if(n === 0 || n === 1) return 1;
+                return n*factorial(n - 1);
+        }
+
+        function calcularFactorial(event){
+            event.preventDefault();
+            const n = parseInt(document.getElementById('factorialN').value);
+
+            if (isNaN(n) || n < 1) {
+                alert("Por favor, ingrese un número entero positivo.");
+                return;
+            }
+            let suma = 0;
+            let serie = '';
+            for(let i=1; i<=n; i++){
+                const fact=factorial(i);
+                serie+= `${i}!=${fact}<br/>`;
+                suma+= fact;
+            }
+            document.getElementById('resFactorial').innerHTML=`<b>Factoriales:</b><br/>${serie}<br/> <b>Suma:</b> ${suma}`;            
+        }
+       
+    </script>
+    
+</body>
+</html>

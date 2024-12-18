@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Es numero Primo?</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 100px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="numeroPrimo">
+            <h3>8. Verificar si un número introducido por teclado es Primo.</h3>
+            <form onsubmit="esPrimo(event)">
+                <label for="numeroN">Número (N):</label>
+                <input type="text" id="numeroN" placeholder="Ej: 7">
+                <button type="submit">Verificar</button>
+            </form>
+            <p id="resPrimo" class="res"></p>
+        </section>
+    </div>
+
+    <script language="javascript" type="text/javascript">
+        function esPrimo(event) {
+        // Evita que el formulario se envíe (para no recargar la página)
+            event.preventDefault();
+
+            // Obtén el valor del número desde el input
+            const numero = parseInt(document.getElementById('numeroN').value);
+            const resPrimo = document.getElementById('resPrimo');
+
+            // Verifica si el número es primo
+            if (isNaN(numero) || numero < 1) {
+                resPrimo.textContent = "Por favor ingresa un número válido mayor que 0.";
+                return;
+            }
+
+            let esPrimo = true;
+            for (let i = 2; i <= Math.sqrt(numero); i++) {
+                if (numero % i === 0) {
+                    esPrimo = false;
+                    break;
+                }
+            }
+
+            if (esPrimo && numero > 1) {
+                resPrimo.textContent = `NÚMERO ES PRIMO`;
+            } 
+            else {
+                resPrimo.textContent = `NÚMERO NO ES PRIMO`;
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotar un Numero</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 150px;
+        }
+
+        select {
+            font-weight: bold;
+            font-size: 16px;
+            padding: 0.2rem;
+            
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="rotarNumero">
+            <h3>4. Rotar un número por la izquierda y derecha</h3>
+            <form onsubmit="rotarNumero(event)">
+                <label for="numeroRotar">Número (X):</label>                
+                <input type="text" id="numeroRotar" placeholder="Ej: 12345">
+                <label for="direccion">Dirección:</label>
+                <select id="direccion">
+                    <option value="izquierda">Izquierda</option>
+                    <option value="derecha">Derecha</option>
+                </select>
+                <button type="submit">Rotar</button>
+            </form>
+            <p id="resRotar" class="res"></p>
+        </section>
+    </div>
+
+    <script language="javascript" type="text/javascript">
+        function rotarNumero(event) {
+          event.preventDefault();
+          const numero = parseInt(document.getElementById('numeroRotar').value);
+          const direccion = document.getElementById('direccion').value;
+      
+          let resultado = numero;
+          const numDigits = Math.floor(Math.log10(numero)) + 1; // Cantidad de dígitos en el número
+          
+          if (direccion === 'izquierda') {
+              // Rotación a la izquierda
+              const primerDigito = Math.floor(numero / Math.pow(10, numDigits - 1));
+              const restoNumero = numero % Math.pow(10, numDigits - 1);
+              resultado = restoNumero * 10 + primerDigito;
+          } else if (direccion === 'derecha') {
+              // Rotación a la derecha
+              const ultimoDigito = numero % 10;
+              const restoNumero = Math.floor(numero / 10);
+              resultado = ultimoDigito * Math.pow(10, numDigits - 1) + restoNumero;
+          }
+      
+          document.getElementById('resRotar').innerText = `Resultado: ${resultado}`;
+        }
+    </script>
+    
+</body>
+</html>

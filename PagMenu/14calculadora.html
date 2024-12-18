@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 80px;
+        }
+        select{
+            background-color: rgb(163, 165, 163);
+            font-size: 16px;
+            font-weight: bold;
+            padding: 0.3rem;
+
+        }    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <section id="calculadora">
+            <h3>14. Realizar una programa calculadora (+,-,/,*,!,x^y)</h3>
+            <form onsubmit="calcular(event)">                
+                <input type="number" id="numero1" step="any" placeholder="x">
+                <input type="number" id="numero2" step="any" placeholder="y">
+                <select id="operacion" onchange="toggleInput()">
+                    <option value="+">Sumar</option>
+                    <option value="-">Restar</option>
+                    <option value="*">Multiplicar</option>
+                    <option value="/">Dividir</option>
+                    <option value="!">Factorial</option>
+                    <option value="^">Potencia</option>
+                </select>
+                <br/>
+                <button type="submit">Calcular</button>
+            </form>
+            <p id="resCalculadora" class="res"></p>
+        </section>
+    </div>
+
+    <script lang="javascript" type="text/javascript">
+        function calcular(event){
+            event.preventDefault();
+
+            let num1 = parseFloat(document.getElementById('numero1').value);
+            let num2 = parseFloat(document.getElementById('numero2').value);
+            let op = document.getElementById('operacion').value;
+            let resultado;
+
+            switch (op) {
+                case '+': resultado=num1+num2; break;
+                case '-': resultado=num1-num2; break;
+                case '*': resultado=num1*num2; break;
+                case '/': 
+                    if(num2===0){
+                        document.getElementById('resCalculadora').innerText = 'Error: No se puede dividir por 0';
+                        return;
+                    }
+                    resultado=num1/num2; break;
+                case '!': 
+                    if (num1 < 0 || !Number.isInteger(num1)) {
+                        document.getElementById('resCalculadora').innerText = 'El factorial solo está definido para enteros no negativos';
+                        return;
+                    }
+                    resultado=factorial(num1); break;
+                case '^': resultado=Math.pow(num1,num2); break;
+                default:
+                    document.getElementById('resCalculadora').innerText = 'Operacion no valida';
+                    return;
+            }
+            document.getElementById('resCalculadora').innerText = 'Resultado: ' + resultado;
+            
+        }
+        function factorial(n){
+            if(n===0 || n===1){
+                return 1;
+            }            
+            let f=1;
+            for (let i = 1; i <= n; i++) {
+                f=f*i;                    
+            }
+            return f;
+        }
+
+        function toggleInput() {
+            const operacion = document.getElementById('operacion').value;
+            const numero2 = document.getElementById('numero2');
+
+            if (operacion === '!') {
+                numero2.disabled = true;
+                numero2.value = ''; // Limpiar valor cuando se deshabilita
+            } else {
+                numero2.disabled = false;
+            }
+        }
+
+        // Llamar a toggleInput para establecer el estado correcto al cargar la página
+        toggleInput();
+        
+
+    </script>
+</body>
+</html>

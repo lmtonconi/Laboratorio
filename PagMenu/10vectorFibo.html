@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Fibonacci</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 120px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="serieFactorial">
+            <h3>10. Vector Fibonacci, generar la serie de fibonacci hasta un N introducido por teclado</h3>
+            <form onsubmit="generarFibo(event)">
+                <label for="fiboN">Número (N):</label>
+                <input type="number" id="fiboN" min="1" placeholder="Ejm: 10">
+                <button type="submit">Generar</button>
+            </form>
+            <p id="resFibo" class="res"></p>
+        </section>
+    </div>
+
+    <script>
+        function generarFibo(event) {
+            event.preventDefault();
+            let n = parseInt(document.getElementById('fiboN').value);
+            if (isNaN(n) || n <= 0) {
+                alert('Por favor, ingresa un número entero positivo.');
+                return;
+            }
+
+            let fibonacci = [0, 1];            
+
+            // Generar la serie de Fibonacci hasta N
+            for (let i = 2; i < n; i++) {
+                fibonacci.push(fibonacci[i - 1] + fibonacci[i - 2]);
+            }
+
+            // Mostrar el resultado el vector
+            document.getElementById('resFibo').innerHTML = "Vector Fibonacci: [ " + fibonacci.join("\t ") + " ]";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+    <title>Serie2</title>
+    <style>    
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 80px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="serieBinario">
+            <h2>2. Generar la Serie: 0,1,10,11,100,101,....</h2>
+            <form onsubmit="generarBinario(event)">
+                <label for="binarioN">Número de términos:</label>
+                <input type="number" id="binarioN" min="1" placeholder="Ej: 10">
+                <button type="submit">Generar</button>
+            </form>
+            <p id="resBinario" class="res"></p>
+        </section>
+    </div>
+
+    <script lang="javascript" type="text/javascript">
+        function generarBinario(event){
+            event.preventDefault();
+            const n= parseInt(document.getElementById('binarioN').value);
+            let serie='';
+            for (let i = 0; i < n; i++) {
+                serie+=i.toString(2);
+                if(i<n-1){
+                    serie+=",";
+                }                
+            }
+            document.getElementById('resBinario').innerText=`Serie: ${serie}`;
+        }
+    </script>
+    
+</body>
+</html>

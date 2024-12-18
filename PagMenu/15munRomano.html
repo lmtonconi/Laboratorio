@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir a Números Romanos</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 120px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="numRomano">
+            <h3>15. Convertir un número entero a números romanos</h3>
+            <form onsubmit="convertirRomano(event)">
+                <label for="numeroRomano">Número (N):</label>
+                <input type="number" id="numeroRomano" min="1" placeholder="Número" required>
+                <button type="submit">Generar</button>
+            </form>
+            <p id="resRomano" class="res"></p>
+        </section>
+    </div>
+
+    <script lang="javascript" type="text/javascript">
+        function convertirRomano(event) {
+            event.preventDefault();
+            
+            let numero = parseInt(document.getElementById('numeroRomano').value);
+            if (isNaN(numero) || numero < 1) {
+                document.getElementById('resRomano').innerText = 'Por favor, ingrese un número válido mayor o igual a 1.';
+                return;
+            }
+
+            const valores = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+            const simbolos = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+            let romano = '';
+
+            // Convertir el número a romano
+            for (let i = 0; i < valores.length; i++) {
+                while (numero >= valores[i]) {
+                    romano += simbolos[i];
+                    numero -= valores[i];
+                }
+            }
+
+            // Mostrar el resultado
+            document.getElementById('resRomano').innerText = `Número romano: ${romano}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Es Palindromo?</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;            
+        }
+        body{
+            min-height: 100vh;
+            background-color: rgb(253, 252, 155);
+            display: grid;
+            place-items: center;
+        }
+        div{
+            background-color: rgb(114, 0, 0);
+            padding: 1.5rem;                        
+            max-width: 100%;
+            border-radius: 1.5rem;
+            color: #ffffff;
+        }
+        
+        input{
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 250px;
+        }
+    
+        button{
+            background-color: rgb(10, 129, 16);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;        
+            border: 0;
+            padding: 0.5rem;            
+            border-radius: 0.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;           
+        }
+        button:hover{
+            background-color: rgb(28, 223, 102);
+        }
+        .res{
+            color: #0f0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="esPalindromo">
+            <h3>12. Determinar si una palabra es palíndromo</h3>
+            <form onsubmit="verificarPalindromo(event)">
+                <label for="textoPalindromo">Texto:</label>
+                <input type="text" id="textoPalindromo" min="1" placeholder="Ejm: reconocer">
+                <button type="submit">Verificar</button>
+            </form>
+            <p id="resPalindromo" class="res"></p>
+        </section>        
+    </div>
+
+    <script language="script" type="text/javascript">
+        function verificarPalindromo(event) {
+            event.preventDefault();
+            const texto = document.getElementById('textoPalindromo').value.toLowerCase();
+            let esPalindromo = true;
+            const long = texto.length;
+            
+            for (let i = 0; i < long / 2; i++) {
+                if (texto[i] !== texto[long - 1 - i]) {
+                    esPalindromo = false;
+                    break;
+                }
+            }
+            const resultado = esPalindromo ? 'ES PALINDROMO' : 'NO ES PALINDROMO';
+            document.getElementById('resPalindromo').innerText = resultado;
+        }
+    </script>
+</body>
+</html>
